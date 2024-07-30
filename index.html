@@ -7,7 +7,7 @@
 </head>
 <link rel="stylesheet" href="style.css">
 <body>
-    <h1>AIRLINE MANAGER</h1>
+    <h1 id="name">AIRLINE MANAGER <button class="name" onclick="changeName()">Choose Name</button></h1>
     <div class="button">
     <button onclick="buyPrompt()">Buy</button> 
     <button onclick="maintain()">Maintain</button>
@@ -23,11 +23,18 @@
 
 <div class="maintenance">
     <p><b>Maintenance Cost: </b> <p id="maintainCost"></p></p>
+    <p><b>Fleet Maintenance Multiplier</b><p id="multDisplay"></p></p>
 </div>
 
-<div class="codeList">
-    
+<div class="codelist">
+    <p><b>AIRCRAFT CODES:</b> <br>
+    DHC Dash 8 - Q400 <br>
+    Airbus A320ceo - A320 <br>
+    Airbus A350-900 - A350 <br>
+    Boeing 747-8i - B747</p>
 </div>
+
+<div class="income"><p><b>Current Income:</b></p><p id="income"></p></div>
 
 </body>
 </html>

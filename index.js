@@ -4,6 +4,8 @@ var amt_a350 = 0
 var amt_747 = 0
 var maintenanceM = 1.5
 var maintainCost = 0
+var income = 0
+var airlineName = "Airline Manager"
 
 const q400_cost = 27000000
 const a320_cost = 100000000
@@ -104,22 +106,31 @@ function flyA350() {
 
 function maintenance() {
     maintenanceM -= 0.05
+    maintenanceM = Math.round(maintenanceM * 100) / 100
     update()
 }
 
 
 function update() {
+    maintainCost = (amt_q400 * 10000) + (amt_a320 * 20000) + (amt_a350 * 50000) + (amt_747 * 50000000 * maintenanceM * 4)
+    income = (amt_q400 * 500000 * maintenanceM * 24) + (amt_a320 * 200000 * maintenanceM * 8) + (amt_a350 * 1000000)
     document.getElementById("money").innerHTML = "$" + money
     document.getElementById("q400").innerHTML = "Q400: " + amt_q400
     document.getElementById("a320").innerHTML = "A320:" + amt_a320
     document.getElementById("a350").innerHTML = "A350: "+ amt_a350
     document.getElementById("747").innerHTML = "747: " + amt_747
-    maintainCost = (amt_q400 * 10000) + (amt_a320 * 20000) + (amt_a350 * 50000) + (amt_747 * 100000)
     document.getElementById("maintainCost").innerHTML = maintainCost
+    document.getElementById("multDisplay").innerHTML = maintenanceM
+    document.getElementById("income").innerHTML = "$" + income + "/min"
 }
 
 function maintain() {
     maintenanceM = 1.5
     money -= maintainCost
     update()
+}
+
+function changeName(){
+    airlineName = prompt("Airline Name?")
+    document.getElementById("name").innerHTML = airlineName
 }

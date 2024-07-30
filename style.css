@@ -38,3 +38,23 @@ button {
     text-align: left;
     margin-left: 5%;
 }
+
+.codelist {
+    margin-top: 25%;
+    display:contents left;
+    text-align: left;
+    margin-left: 5%;
+}
+
+.income {
+    font-size: xx-large;
+    margin-left: 5%;
+    margin-top: 5%;
+}
+.name {
+    background-color: black;
+    color: white;
+    font-size: small;
+    width: 5%;
+    height: 3%;
+}
