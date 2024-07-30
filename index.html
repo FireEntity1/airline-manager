@@ -9,17 +9,18 @@
 <body>
     <h1 id="name">AIRLINE MANAGER <button class="name" onclick="changeName()">Choose Name</button></h1>
     <div class="button">
-    <button onclick="buyPrompt()">Buy</button> 
-    <button onclick="maintain()">Maintain</button>
+    <button onclick="buyPrompt()">Buy <p class="cost">Aircraft</p></button> 
+    <button onclick="maintain()">Maintain<p id="maintainCost" class="cost"></p></button>
 </div>
 <div class="button upgrades">
-    <button id="jetbridge" onclick="jetbridge()">Buy Jetbridge Upgrade</button>
-    <button id="premium" onclick="premium()">Buy Premium Economy</button>
-    <button id="business" onclick="business()">Buy Business Class</button>
-    <button id="first" onclick="first()">Buy First Class</button>
+    <button id="jetbridge" onclick="jetbridge()">Buy Jetbridge Upgrade<p class="cost">$25,000,000</p></button>
+    <button id="premium" onclick="premium()">Buy Premium Economy<p class="cost">$10,000,000</p></button>
+    <button id="business" onclick="business()">Buy Business Class<p class="cost">$50,000,000</p></button>
+    <button id="first" onclick="first()">Buy First Class <p class="cost">$80,000,000</p></button>
+    <button id="airport" onclick="airport()">Unlock New Airport <p class="cost" id="airportcost"></p></button>
 </div>
 <div class="inventory">
-    <p id="money"></p>
+    <b class="money"><p id="money"></p></b>
     <p><b>Aircraft Inventory</b></p>
     <p id="q400"></p>
     <p id="a320"></p>
@@ -28,7 +29,6 @@
 </div>
 
 <div class="maintenance">
-    <p><b>Maintenance Cost: </b> <p id="maintainCost"></p></p>
     <p><b>Fleet Maintenance Multiplier</b><p id="multDisplay"></p></p>
 </div>
 <div class="multipliers">
@@ -37,10 +37,10 @@
 
 <div class="codelist">
     <p><b>AIRCRAFT CODES:</b> <br>
-    DHC Dash 8 - Q400 <br>
-    Airbus A320ceo - A320 <br>
-    Airbus A350-900 - A350 <br>
-    Boeing 747-8i - B747</p>
+    DHC Dash 8 - Q400 - <b>$27,000,000</b><br>
+    Airbus A320ceo - A320 - <b>$100,000,000</b><br>
+    Airbus A350-900 - A350 - <b>$366,000,000</b><br>
+    Boeing 747-8i - B747 - <b>$418,000,000</b></p>
 </div>
 
 <div class="income"><p><b>Current Income:</b></p><p id="income"></p></div>

@@ -8,6 +8,9 @@ var income = 0
 var airlineName = "Airline Manager"
 var timeMult = 1
 var upgradeMult = 1
+var airportCost = 5000000
+var airportIndex = 0
+
 
 // Upgrades:
 var pre_eco = false
@@ -15,12 +18,13 @@ var businessC = false
 var firstC = false
 var jetBridge = false
 
+
 const q400_cost = 27000000
 const a320_cost = 100000000
 const a350_cost = 366000000
 const b747_cost = 418000000
 
-var money = 25000000
+var money = 2500000000
 
 window.onload = function() {
     update();
@@ -123,15 +127,16 @@ function update() {
     maintainCost = (amt_q400 * 10000) + (amt_a320 * 20000) + (amt_a350 * 50000) + (amt_747 * 50000000 * maintenanceM * 4)
     income = (amt_q400 * 500000 * maintenanceM * 24 * upgradeMult) + (amt_a320 * 200000 * maintenanceM * 8 * upgradeMult) + (amt_a350 * 1000000 * 2  * upgradeMult) + (amt_747 * 50000000 * 2.4  * upgradeMult)
     upgradeMult = Math.round(upgradeMult * 100) / 100
-    document.getElementById("money").innerHTML = "$" + money
-    document.getElementById("q400").innerHTML = "Q400: " + amt_q400
+    document.getElementById("money").innerHTML = "$" + money.toLocaleString() + money.toString().slice(money.toString().indexOf('.'))
+    document.getElementById("q400").innerHTML = "Q400: " +  amt_q400
     document.getElementById("a320").innerHTML = "A320:" + amt_a320
     document.getElementById("a350").innerHTML = "A350: "+ amt_a350
     document.getElementById("747").innerHTML = "747: " + amt_747
-    document.getElementById("maintainCost").innerHTML = maintainCost
+    document.getElementById("maintainCost").innerHTML = "$" + maintainCost.toLocaleString() + maintainCost.toString().slice(maintainCost.toString().indexOf('.'))
     document.getElementById("multDisplay").innerHTML = maintenanceM + "x"
-    document.getElementById("income").innerHTML = "$" + income + "/min"
+    document.getElementById("income").innerHTML = "$" + (income.toLocaleString() + income.toString().slice(income.toString().indexOf('.')) + "/min")
     document.getElementById("mult").innerHTML = upgradeMult + "x"
+    document.getElementById("airportcost").innerHTML = "$" + airportCost.toLocaleString() + airportCost.toString().slice(airportCost.toString().indexOf('.'))
 }
 
 function maintain() {
@@ -198,5 +203,16 @@ function first() {
     }
     else {
         alert("Err. Low funds");
+    }
+}
+
+function airport() {
+    if (money >= airportCost) {
+        money -= airportCost
+        airportIndex += 1;
+        upgradeMult += 0.1
+        airportCost = airportCost*2
+        alert("New airport unlocked!")
+        update()
     }
 }

@@ -19,7 +19,10 @@ button {
     text-align: center;
     color: black;
     background-color: white;
+    display:inline-block;
+    height: 25%;
 }
+
 .button {
     text-align: center;
 }
@@ -40,10 +43,11 @@ button {
 }
 
 .codelist {
-    margin-top: 25%;
+    margin-top: 10ch;
     display:contents left;
     text-align: left;
     margin-left: 5%;
+    font-size:large;
 }
 
 .income {
@@ -51,6 +55,7 @@ button {
     margin-left: 5%;
     margin-top: 5%;
 }
+
 .name {
     background-color: black;
     color: white;
@@ -62,8 +67,18 @@ button {
     margin: 3%;
     font-size: large;
 }
+
 .multipliers {
-    margin-top:40ch;
+    margin-top:30ch;
     margin-left: 5%;
     justify-self: left;
+    font-size: large;
+}
+
+.cost {
+    font-size: medium;
+}
+
+.money {
+    font-size: 200%;
 }
