@@ -5,10 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+<link rel="stylesheet" href="style.css">
 <body>
     <h1>AIRLINE MANAGER</h1>
-    <button onclick="buyPrompt()">Buy</button>
+    <div class="button">
+    <button onclick="buyPrompt()">Buy</button> 
+</div>
+<div class="dropdown">
+    <button class="dropbtn">Actions</button>
+    <div class="dropdown-content">
+      <a href="#">Link 1</a>
+      <a href="#">Link 2</a>
+      <a href="#">Link 3</a>
+    </div>
+  </div>
     <p id="money"></p>
+    <p><b>Aircraft Inventory</b></p>
+    <p id="q400"></p>
+    <p id="a320"></p>
+    <p id="a350"></p>
+    <p id="747"></p>
 </body>
 </html>
 <script src="index.js"></script>
