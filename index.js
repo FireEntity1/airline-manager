@@ -2,7 +2,8 @@ var amt_q400 = 1
 var amt_a320 = 0
 var amt_a350 = 0
 var amt_747 = 0
-var maintenance = 1
+var maintenanceM = 1.5
+var maintainCost = 0
 
 const q400_cost = 27000000
 const a320_cost = 100000000
@@ -76,27 +77,33 @@ function buyPrompt(code, amt = 0) {
     }
 }
 
-// setInterval(flyQ400, 5000);
-// setInterval(flyA320, 15000);
-// setInterval(fly747, 30000);
-// setInterval(flyA350, 50000);
+setInterval(flyQ400, 2500);
+setInterval(flyA320, 7500);
+setInterval(fly747, 15000);
+setInterval(flyA350, 25000);
+setInterval(maintenance, 30000)
 
 function flyQ400() {
-    money += amt_q400 * 50000
+    money += amt_q400 * 500000 * maintenanceM
     update()
 }
 
-function flyA320()) {
-    money += amt_a320 * 200000
+function flyA320() {
+    money += amt_a320 * 2000000  * maintenanceM
     update()
 }
 
 function fly747() {
-    money += amt_747 * 500000
+    money += amt_747 * 50000000  * maintenanceM
     update()
 }
 function flyA350() {
-    money += amt_a350 * 1000000
+    money += amt_a350 * 100000000  * maintenanceM
+    update()
+}
+
+function maintenance() {
+    maintenanceM -= 0.05
     update()
 }
 
@@ -107,4 +114,12 @@ function update() {
     document.getElementById("a320").innerHTML = "A320:" + amt_a320
     document.getElementById("a350").innerHTML = "A350: "+ amt_a350
     document.getElementById("747").innerHTML = "747: " + amt_747
+    maintainCost = (amt_q400 * 10000) + (amt_a320 * 20000) + (amt_a350 * 50000) + (amt_747 * 100000)
+    document.getElementById("maintainCost").innerHTML = maintainCost
+}
+
+function maintain() {
+    maintenanceM = 1.5
+    money -= maintainCost
+    update()
 }
