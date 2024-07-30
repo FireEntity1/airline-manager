@@ -6,6 +6,14 @@ var maintenanceM = 1.5
 var maintainCost = 0
 var income = 0
 var airlineName = "Airline Manager"
+var timeMult = 1
+var upgradeMult = 1
+
+// Upgrades:
+var pre_eco = false
+var businessC = false
+var firstC = false
+var jetBridge = false
 
 const q400_cost = 27000000
 const a320_cost = 100000000
@@ -79,28 +87,28 @@ function buyPrompt(code, amt = 0) {
     }
 }
 
-setInterval(flyQ400, 2500);
-setInterval(flyA320, 7500);
-setInterval(fly747, 15000);
-setInterval(flyA350, 25000);
-setInterval(maintenance, 30000)
+setInterval(flyQ400, 2500*timeMult);
+setInterval(flyA320, 7500*timeMult);
+setInterval(fly747, 15000*timeMult);
+setInterval(flyA350, 25000*timeMult);
+setInterval(maintenance, 30000*timeMult)
 
 function flyQ400() {
-    money += amt_q400 * 500000 * maintenanceM
+    money += amt_q400 * 500000 * maintenanceM * upgradeMult
     update()
 }
 
 function flyA320() {
-    money += amt_a320 * 2000000  * maintenanceM
+    money += amt_a320 * 2000000  * maintenanceM * upgradeMult
     update()
 }
 
 function fly747() {
-    money += amt_747 * 50000000  * maintenanceM
+    money += amt_747 * 50000000  * maintenanceM * upgradeMult
     update()
 }
 function flyA350() {
-    money += amt_a350 * 100000000  * maintenanceM
+    money += amt_a350 * 100000000  * maintenanceM * upgradeMult
     update()
 }
 
@@ -113,15 +121,17 @@ function maintenance() {
 
 function update() {
     maintainCost = (amt_q400 * 10000) + (amt_a320 * 20000) + (amt_a350 * 50000) + (amt_747 * 50000000 * maintenanceM * 4)
-    income = (amt_q400 * 500000 * maintenanceM * 24) + (amt_a320 * 200000 * maintenanceM * 8) + (amt_a350 * 1000000)
+    income = (amt_q400 * 500000 * maintenanceM * 24 * upgradeMult) + (amt_a320 * 200000 * maintenanceM * 8 * upgradeMult) + (amt_a350 * 1000000 * 2  * upgradeMult) + (amt_747 * 50000000 * 2.4  * upgradeMult)
+    upgradeMult = Math.round(upgradeMult * 100) / 100
     document.getElementById("money").innerHTML = "$" + money
     document.getElementById("q400").innerHTML = "Q400: " + amt_q400
     document.getElementById("a320").innerHTML = "A320:" + amt_a320
     document.getElementById("a350").innerHTML = "A350: "+ amt_a350
     document.getElementById("747").innerHTML = "747: " + amt_747
     document.getElementById("maintainCost").innerHTML = maintainCost
-    document.getElementById("multDisplay").innerHTML = maintenanceM
+    document.getElementById("multDisplay").innerHTML = maintenanceM + "x"
     document.getElementById("income").innerHTML = "$" + income + "/min"
+    document.getElementById("mult").innerHTML = upgradeMult + "x"
 }
 
 function maintain() {
@@ -133,4 +143,60 @@ function maintain() {
 function changeName(){
     airlineName = prompt("Airline Name?")
     document.getElementById("name").innerHTML = airlineName
+}
+
+function jetbridge() {
+    if (money >= 25000000) {
+        money -= 25000000
+        jetBridge = true
+        timeMult -= 0.2
+        alert("Jetbridge Bought!")
+        document.getElementById("jetbridge").remove()
+        update()
+    }
+    else {
+        alert("Err. Low funds");
+    }
+}
+
+function premium() {
+    if (money >= 10000000) {
+        money -= 10000000
+        pre_eco = true
+        upgradeMult += 0.2
+        alert("Premium Economy Bought!")
+        document.getElementById("premium").remove()
+        update()
+    }
+    else {
+        alert("Err. Low funds");
+    }
+}
+
+function business() {
+    if (money >= 50000000) {
+        money -= 50000000
+        businessC = true
+        upgradeMult += 0.4
+        alert("Business Class Bought!")
+        document.getElementById("business").remove()
+        update()
+    }
+    else {
+        alert("Err. Low funds");
+    }
+}
+
+function first() {
+    if (money >= 80000000) {
+        money -= 80000000
+        firstC = true
+        upgradeMult += 0.6
+        alert("First Class Bought!")
+        document.getElementById("first").remove()
+        update()
+    }
+    else {
+        alert("Err. Low funds");
+    }
 }

@@ -12,6 +12,12 @@
     <button onclick="buyPrompt()">Buy</button> 
     <button onclick="maintain()">Maintain</button>
 </div>
+<div class="button upgrades">
+    <button id="jetbridge" onclick="jetbridge()">Buy Jetbridge Upgrade</button>
+    <button id="premium" onclick="premium()">Buy Premium Economy</button>
+    <button id="business" onclick="business()">Buy Business Class</button>
+    <button id="first" onclick="first()">Buy First Class</button>
+</div>
 <div class="inventory">
     <p id="money"></p>
     <p><b>Aircraft Inventory</b></p>
@@ -25,6 +31,9 @@
     <p><b>Maintenance Cost: </b> <p id="maintainCost"></p></p>
     <p><b>Fleet Maintenance Multiplier</b><p id="multDisplay"></p></p>
 </div>
+<div class="multipliers">
+    <b>Upgrade Multiplier: </b> <p id="mult"></p>
+</div>
 
 <div class="codelist">
     <p><b>AIRCRAFT CODES:</b> <br>
@@ -35,6 +44,8 @@
 </div>
 
 <div class="income"><p><b>Current Income:</b></p><p id="income"></p></div>
+
+
 
 </body>
 </html>
