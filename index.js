@@ -11,6 +11,7 @@ var upgradeMult = 1;
 var airportCost = 5000000;
 var airportIndex = 0;
 var aircraftAmt = 1;
+var currentEvent = 0
 
 
 // Upgrades:
@@ -18,8 +19,9 @@ var pre_eco = false;
 var businessC = false;
 var firstC = false;
 var jetBridge = false;
-var bookingSys = false;
+var booking = false;
 var isAlliance = false;
+var isWeekend = false
 
 
 const q400_cost = 27000000;
@@ -30,8 +32,8 @@ const b747_cost = 418000000;
 var money = 2500000000;
 
 window.onload = function() {
-    update();
-  };
+    setTimeout(startLimitedEvent, 7000)
+}
 
 function buyPrompt(code, amt = 0) {
     code = prompt("ENTER AIRCRAFT CODE:");
@@ -99,8 +101,8 @@ setInterval(flyA320, 7500*timeMult);
 setInterval(fly747, 15000*timeMult);
 setInterval(flyA350, 25000*timeMult);
 setInterval(maintenance, 30000*timeMult)
-setInterval(randEvent, 30000*timeMult)
-setInterval(allianceEvent, 25000*timeMult)
+setInterval(randEvent, 60000*timeMult)
+setInterval(allianceEvent, 30000*timeMult)
 
 function flyQ400() {
     money += amt_q400 * 500000 * maintenanceM * upgradeMult
@@ -228,6 +230,7 @@ function bookingSys() {
         alert("Better booking system bought!")
         money -= 50000000
         timeMult -= 0.1
+        document.getElementById("booking").remove()
         update()
     }
 }
@@ -237,6 +240,7 @@ function alliance() {
         alert("Alliance joined!");
         timeMult -= 0.1;
         upgradeMult += 0.2;
+        document.getElementById("alliance").remove()
     }
 }
 
@@ -293,4 +297,17 @@ if (isAlliance == true) {
             break;
     }
 }
+}
+
+function startLimitedEvent() {
+            alert("Long weekend! 1.5x income for 1 minute");
+            window.setTimeout(endLimitedEvent, 60000);
+            upgradeMult += 0.5;
+            update()
+}
+
+function endLimitedEvent() {
+    upgradeMult -= 0.5;
+    alert("Event ended!")
+    window.setTimeout(startLimitedEvent, 120000)
 }
