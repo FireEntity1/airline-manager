@@ -1,30 +1,33 @@
-var amt_q400 = 1
-var amt_a320 = 0
-var amt_a350 = 0
-var amt_747 = 0
-var maintenanceM = 1.5
-var maintainCost = 0
-var income = 0
-var airlineName = "Airline Manager"
-var timeMult = 1
-var upgradeMult = 1
-var airportCost = 5000000
-var airportIndex = 0
+var amt_q400 = 1;
+var amt_a320 = 0;
+var amt_a350 = 0;
+var amt_747 = 0;
+var maintenanceM = 1.5;
+var maintainCost = 0;
+var income = 0;
+var airlineName = "Airline Manager";
+var timeMult = 1;
+var upgradeMult = 1;
+var airportCost = 5000000;
+var airportIndex = 0;
+var aircraftAmt = 1;
 
 
 // Upgrades:
-var pre_eco = false
-var businessC = false
-var firstC = false
-var jetBridge = false
+var pre_eco = false;
+var businessC = false;
+var firstC = false;
+var jetBridge = false;
+var bookingSys = false;
+var isAlliance = false;
 
 
-const q400_cost = 27000000
-const a320_cost = 100000000
-const a350_cost = 366000000
-const b747_cost = 418000000
+const q400_cost = 27000000;
+const a320_cost = 100000000;
+const a350_cost = 366000000;
+const b747_cost = 418000000;
 
-var money = 2500000000
+var money = 2500000000;
 
 window.onload = function() {
     update();
@@ -96,6 +99,8 @@ setInterval(flyA320, 7500*timeMult);
 setInterval(fly747, 15000*timeMult);
 setInterval(flyA350, 25000*timeMult);
 setInterval(maintenance, 30000*timeMult)
+setInterval(randEvent, 30000*timeMult)
+setInterval(allianceEvent, 25000*timeMult)
 
 function flyQ400() {
     money += amt_q400 * 500000 * maintenanceM * upgradeMult
@@ -124,6 +129,7 @@ function maintenance() {
 
 
 function update() {
+    aircraftAmt = amt_q400 + amt_a320 + amt_a350 + amt_747
     maintainCost = (amt_q400 * 10000) + (amt_a320 * 20000) + (amt_a350 * 50000) + (amt_747 * 50000000 * maintenanceM * 4)
     income = (amt_q400 * 500000 * maintenanceM * 24 * upgradeMult) + (amt_a320 * 200000 * maintenanceM * 8 * upgradeMult) + (amt_a350 * 1000000 * 2  * upgradeMult) + (amt_747 * 50000000 * 2.4  * upgradeMult)
     upgradeMult = Math.round(upgradeMult * 100) / 100
@@ -215,4 +221,76 @@ function airport() {
         alert("New airport unlocked!")
         update()
     }
+}
+
+function bookingSys() {
+    if (money >= 50000000) {
+        alert("Better booking system bought!")
+        money -= 50000000
+        timeMult -= 0.1
+        update()
+    }
+}
+
+function alliance() {
+    if (money >= 250000000) {
+        alert("Alliance joined!");
+        timeMult -= 0.1;
+        upgradeMult += 0.2;
+    }
+}
+
+function randEvent(event) {
+event = Math.floor(Math.random() * 10);
+switch (event) {
+    case 1:
+        alert("Event: Charter flight request");
+        alert("+$" + aircraftAmt * 2000000)
+        money += aircraftAmt * 2000000
+        update()
+        break;
+    case 2:
+        alert("Event: An aircraft had a tailstrike!")
+        alert("-$4,000,000")
+        money -= 4000000
+        update()
+        break;
+    case 3:
+        alert("Event: Another aircraft wing clipped your aircraft's fuselage")
+        alert("-$8,000,000")
+        money -= 8000000
+        update()
+        break;
+    case 4:
+        alert("Event: Mass delays, compensation required")
+        alert("-$" + aircraftAmt * 2000000)
+        money -= aircraftAmt * 2000000
+        update()
+        break;
+    case 5:
+        alert("Event: High demand!")
+        alert("+$" + (8000000 * upgradeMult * aircraftAmt))
+        money += 8000000 * upgradeMult * aircraftAmt
+        update()
+        break;
+    default:
+        break;
+}
+}
+
+function allianceEvent(event) {
+if (isAlliance == true) {
+    event = Math.floor(Math.random() * 3);
+    switch (event) {
+        case 1:
+            alert("Alliance Fees! -$" + aircraftAmt * 2000000);
+            money -= aircraftAmt * 1000000;
+            update();
+            break;
+        case 2:
+            alert("Alliance bookings! +$" + aircraftAmt * 2000000);
+            update();
+            break;
+    }
+}
 }
