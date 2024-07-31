@@ -145,6 +145,7 @@ function update() {
     document.getElementById("income").innerHTML = "$" + (income.toLocaleString() + income.toString().slice(income.toString().indexOf('.')) + "/min")
     document.getElementById("mult").innerHTML = upgradeMult + "x"
     document.getElementById("airportcost").innerHTML = "$" + airportCost.toLocaleString() + airportCost.toString().slice(airportCost.toString().indexOf('.'))
+    document.getElementById("time").innerHTML = timeMult + "x"
 }
 
 function maintain() {
@@ -240,6 +241,7 @@ function alliance() {
         alert("Alliance joined!");
         timeMult -= 0.1;
         upgradeMult += 0.2;
+        isAlliance = true
         document.getElementById("alliance").remove()
     }
 }

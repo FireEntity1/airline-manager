@@ -54,6 +54,7 @@ button {
     font-size: xx-large;
     margin-left: 5%;
     margin-top: 5%;
+    color: #0FA3B1;
 }
 
 .name {
@@ -81,4 +82,17 @@ button {
 
 .money {
     font-size: 200%;
+    color: #31D843;
+}
+
+#multDisplay {
+    color: #31D843;
+}
+
+#mult {
+    color: #31D843;
+}
+
+#time {
+    color: #31D843;
 }
